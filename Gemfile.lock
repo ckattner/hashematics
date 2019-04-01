@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    Hashematics (1.0.0)
+    hashematics (1.0.0)
 
 GEM
   remote: https://rubygems.org/
@@ -109,11 +109,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  Hashematics!
-  faker
+  faker (~> 1)
   guard-rspec (~> 4.7)
+  hashematics!
   pdf-inspector (~> 1)
-  pry
+  pry (~> 0)
   rspec (~> 3.8)
   rubocop (~> 0.63.1)
   simplecov (~> 0.16.1)

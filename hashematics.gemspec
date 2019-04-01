@@ -21,10 +21,10 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 2.3.8'
 
-  s.add_development_dependency('faker')
+  s.add_development_dependency('faker', '~>1')
   s.add_development_dependency('guard-rspec', '~>4.7')
   s.add_development_dependency('pdf-inspector', '~>1')
-  s.add_development_dependency('pry')
+  s.add_development_dependency('pry', '~>0')
   s.add_development_dependency('rspec', '~> 3.8')
   s.add_development_dependency('rubocop', '~>0.63.1')
   s.add_development_dependency('simplecov', '~>0.16.1')
