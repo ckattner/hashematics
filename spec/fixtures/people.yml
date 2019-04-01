@@ -1,0 +1,84 @@
+- :id: '1'
+  :first: Matt
+  :last: Rizzo
+  :smoker: 'false'
+  :dob: '1902-03-04'
+  :cars:
+  - id: '2'
+    make: Jeep
+    model: Wrangler
+    year: '1964'
+    plates:
+    - id: '12'
+      number: JEEPY123
+  - id: '3'
+    make: Mercedes
+    model: Benz
+    year: '1921'
+    plates:
+    - id: '13'
+      number: BENZY4565
+  houses:
+  - id: '7'
+    st1: 555 N. Michigan Ave
+    st2: Suite 203
+    city: Chicago
+    st: IL
+    zip: '60075'
+  - id: '8'
+    st1: 2813 N. Drivey Ave
+    st2: Apt. 399
+    city: Roanoke
+    st: GA
+    zip: '99998'
+- :id: '2'
+  :first: Katie
+  :last: Bunny
+  :smoker: 'true'
+  :dob: '1919-09-02'
+  :cars:
+  - id: '4'
+    make: GMC
+    model: Terrainia
+    year: '1999'
+    plates:
+    - id: '14'
+      number: GMC394
+  - id: '5'
+    make: Buick
+    model: Macartha
+    year: '1982'
+    plates:
+    - id: '15'
+      number: BUICKY93
+  houses:
+  - id: '9'
+    st1: 123 Happy Ln.
+    st2: Apt. 45
+    city: Mayhusee
+    st: RI
+    zip: '53210'
+- :id: '3'
+  :first: Ralphie
+  :last: Dog
+  :smoker: 'true'
+  :dob: '1999-12-11'
+  :cars:
+  - id: '6'
+    make: Audi
+    model: A1
+    year: '2012'
+    plates: []
+  houses:
+  - id: '10'
+    st1: 4500 Century Ave.
+    st2: Floor 3A
+    city: Pakato
+    st: ZA
+    zip: '093821'
+  - id: '11'
+    st1: 9990 Lake St.
+    st2: null
+    city: Pakato
+    st: ZA
+    zip: '093822'

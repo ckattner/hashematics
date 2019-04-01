@@ -1,0 +1,9 @@
+ID #,First,Last,Smoker,DOB,Car ID #,Make,Model,Year,House ID #,Street 1,Street 2,City,St,Zip,Plate ID #,Plate Number
+1,Matt,Rizzo,false,1902-03-04,2,Jeep,Wrangler,1964,7,555 N. Michigan Ave,Suite 203,Chicago,IL,60075,12,JEEPY123
+1,Matt,Rizzo,false,1902-03-04,3,Mercedes,Benz,1921,7,555 N. Michigan Ave,Suite 203,Chicago,IL,60075,13,BENZY456
+1,Matt,Rizzo,false,1902-03-04,2,Jeep,Wrangler,1964,8,2813 N. Drivey Ave,Apt. 399,Roanoke,GA,99998,12,JEEPY123
+1,Matt,Rizzo,false,1902-03-04,3,Mercedes,Benz,1921,8,2813 N. Drivey Ave,Apt. 399,Roanoke,GA,99998,13,BENZY4565
+2,Katie,Bunny,true,1919-09-02,4,GMC,Terrainia,1999,9,123 Happy Ln.,Apt. 45,Mayhusee,RI,53210,14,GMC394
+2,Katie,Bunny,true,1919-09-02,5,Buick,Macartha,1982,9,123 Happy Ln.,Apt. 45,Mayhusee,RI,53210,15,BUICKY93
+3,Ralphie,Dog,true,1999-12-11,6,Audi,A1,2012,10,4500 Century Ave.,Floor 3A,Pakato,ZA,093821,,
+3,Ralphie,Dog,true,1999-12-11,6,Audi,A1,2012,11,9990 Lake St.,,Pakato,ZA,093822,,

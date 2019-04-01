@@ -1,0 +1,134 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require 'bundler/setup'
+require 'csv'
+require 'faker'
+require 'hashematics'
+require 'pry'
+require 'benchmark'
+
+def read(name)
+  File.open(name, 'r:bom|utf-8')
+end
+
+# rubocop:disable Security/YAMLLoad
+def yaml_read(name)
+  YAML.load(read(name))
+end
+# rubocop:enable Security/YAMLLoad
+
+def csv_read(name)
+  CSV.new(read(name), headers: true).map(&:to_h)
+end
+
+def make_people_rows(num)
+  (1..num).map do |i|
+    [
+      "#{i}-#{Faker::IDNumber.invalid}",
+      Faker::Name.first_name,
+      Faker::Name.last_name,
+      Faker::Boolean.boolean,
+      Faker::Date.birthday(16, 102)
+    ]
+  end
+end
+
+def make_house_rows(num, id_prefix)
+  (1..num).map do |k|
+    [
+      "#{id_prefix}-#{k}-#{Faker::Number.between(1, 9_999_999)}",
+      Faker::Address.street_address,
+      Faker::Address.secondary_address,
+      Faker::Address.city,
+      Faker::Address.state,
+      Faker::Address.zip
+    ]
+  end
+end
+
+number_of_people    = (ARGV[0] || 1_000).to_i
+number_of_cars      = (ARGV[1] || 20).to_i
+number_of_houses    = (ARGV[2] || 20).to_i
+always_generate     = ARGV[3] == 't'
+file_name           = ARGV[4] || File.join('tmp', 'benchmark_example.csv')
+config_file_name    = ARGV[5] || File.join('spec', 'fixtures', 'config.yml')
+
+puts 'Options'
+puts '-------------------------------------'
+puts "number_of_people: #{number_of_people}"
+puts "number_of_cars:   #{number_of_cars}"
+puts "number_of_houses: #{number_of_houses}"
+puts "always_generate:  #{always_generate}"
+puts "file_name:        #{file_name}"
+puts "config_file_name: #{config_file_name}"
+puts '-------------------------------------'
+
+if always_generate || !File.exist?(file_name)
+  total_rows = number_of_people * number_of_cars * number_of_houses
+  puts "Generating benchmark file: #{file_name} with #{total_rows} rows"
+
+  headers = [
+    'ID #',
+    'First',
+    'Last',
+    'Smoker',
+    'DOB',
+    'Car ID #',
+    'Make',
+    'Model',
+    'Year',
+    'House ID #',
+    'Street 1',
+    'Street 2',
+    'City',
+    'St',
+    'Zip',
+    'Plate ID #',
+    'Plate Number'
+  ]
+
+  people_rows = make_people_rows(number_of_people)
+
+  CSV.open(file_name, 'w') do |csv|
+    csv << headers
+
+    people_rows.each_with_index do |person_row, i|
+      house_rows = make_house_rows(number_of_houses, i)
+
+      (1..number_of_cars).each do |j|
+        car_row = [
+          "#{i}-#{j}-#{Faker::Vehicle.vin}",
+          Faker::Vehicle.make,
+          Faker::Vehicle.model,
+          Faker::Vehicle.year
+        ]
+
+        plate_row = [
+          "#{i}-#{j}-0-#{Faker::Number.between(1, 9_999_999)}",
+          Faker::Vehicle.license_plate
+        ]
+
+        house_rows.each do |house_row|
+          csv << person_row + car_row + house_row + plate_row
+        end
+      end
+    end
+  end
+
+  puts 'Benchmark file generated.'
+end
+
+puts 'Loading prerequisites'
+configuration = yaml_read(config_file_name)
+groups = ::Hashematics::Configuration.new(configuration).groups
+graph = ::Hashematics::Graph.new(groups)
+
+puts 'Loading data'
+rows = csv_read(file_name)
+
+puts "Executing benchmark for #{rows.length} rows"
+Benchmark.bm do |x|
+  x.report('ADD')   { graph.add(rows) }
+  x.report('DATA')  { graph.data('people') }
+end

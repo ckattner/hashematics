@@ -1,0 +1,44 @@
+types:
+  person:
+    properties:
+      :id: 'ID #'
+      :first: First
+      :last: Last
+      :smoker: Smoker
+      :dob: DOB
+  car:
+    properties:
+      id: 'Car ID #'
+      make: Make
+      model: Model
+      year: Year
+  house:
+    :properties:
+      id: 'House ID #'
+      st1: Street 1
+      st2: Street 2
+      city: City
+      st: St
+      zip: Zip
+  plate:
+    :properties:
+      id: 'Plate ID #'
+      number: Plate Number
+groups:
+  people:
+    by: 'ID #'
+    type: person
+    groups:
+      :cars:
+        by: 'Car ID #'
+        type: car
+        groups:
+          plates:
+            by: 'Plate ID #'
+            type: plate
+      houses:
+        by: 'House ID #'
+        type: house
+  cars:
+    by: 'Car ID #'
+    type: car

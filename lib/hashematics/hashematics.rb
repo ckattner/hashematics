@@ -7,6 +7,30 @@
 # LICENSE file in the root directory of this source tree.
 #
 
-# Base namespace stub.
+require 'digest'
+require 'forwardable'
+require 'ostruct'
+
+require_relative 'category'
+require_relative 'configuration'
+require_relative 'dictionary'
+require_relative 'graph'
+require_relative 'group'
+require_relative 'key'
+require_relative 'id'
+require_relative 'object_interface'
+require_relative 'record'
+require_relative 'record_set'
+require_relative 'type'
+require_relative 'visitor'
+
+# Top-level API syntactic sugar that holds the common library use(s).
 module Hashematics
+  class << self
+    def graph(config: {}, rows: [])
+      groups = ::Hashematics::Configuration.new(config).groups
+
+      ::Hashematics::Graph.new(groups).add(rows)
+    end
+  end
 end
