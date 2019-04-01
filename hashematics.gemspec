@@ -3,7 +3,7 @@
 require './lib/hashematics/version'
 
 Gem::Specification.new do |s|
-  s.name        = 'Hashematics'
+  s.name        = 'hashematics'
   s.version     = Hashematics::VERSION
   s.summary     = 'Configurable Data Shaper'
 
