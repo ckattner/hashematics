@@ -383,11 +383,13 @@ The `objects` variable should now look like:
 
 Records with blank ID's are ignored by default.  This is due to the flat nature of the incoming data.  Take the following example:
 
-ID # | First Name | Last Name | Costume ID # | Costume Name | Costume Color
----- | ---------- | --------- | ------------ | ------------ | -------------
-1    | Bruce      | Banner    | 3            | Basic Hulk   | Green
-2    | Tony       | Stark     |              |              |
-     |            |           | 4            | Undercover   | Purple
+ID #   | First Name | Last Name | Costume ID # | Costume Name | Costume Color
+------ | ---------- | --------- | ------------ | ------------ | -------------
+1      | Bruce      | Banner    | 3            | Basic Hulk   | Green
+2      | Tony       | Stark     | *null*       | *null*       | *null*
+*null* | *null*     | *null*    | 4            | Undercover   | Purple
+
+*Note: null is shown for blank values so the markdown renders properly.*
 
 This is interpreted as:
 
