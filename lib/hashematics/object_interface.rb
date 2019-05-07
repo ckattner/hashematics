@@ -14,21 +14,13 @@ module Hashematics
   class ObjectInterface
     class << self
       def get(object, key)
-        if object.is_a?(Hash)
-          indifferent_hash_get(object, key)
-        elsif object.respond_to?(key)
-          object.send(key)
-        end
+        resolver.get(object, key)
       end
 
       private
 
-      def indifferent_hash_get(hash, key)
-        if hash.key?(key.to_s)
-          hash[key.to_s]
-        elsif hash.key?(key.to_s.to_sym)
-          hash[key.to_s.to_sym]
-        end
+      def resolver
+        @resolver ||= Objectable.resolver(separator: nil)
       end
     end
   end
